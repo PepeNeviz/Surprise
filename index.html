@@ -2,12 +2,13 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Vue Wajib Isi Nama</title>
+  <title>Surprisee</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
   <div id="app">
+    <div class="container">
     <div class="scene" :class="{ active: scene === 'input' }">
       <h2>Ayo absen adik-adik</h2>
       <img src="windah1.jpg" alt="">
@@ -82,6 +83,7 @@
       <img src="windah4.jpg" alt="">
       <button @click="pindah('makasih')">Maafin</button>
       <button @click="pindah('makasih')">Yaudah aku maafin</button>
+    </div>
     </div>
   </div>
 
