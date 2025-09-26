@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue Wajib Isi Nama</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="scene" :class="{ active: scene === 'input' }">
+      <h2>Ayo absen adik-adik</h2>
+      <img src="windah1.jpg" alt="">
+      <input type="text" v-model="nama" placeholder="Masukin nama kamu" />
+      <br>
+      <button @click="pindah('output')">Udah bang</button>
+    </div>
+
+    <div class="scene" :class="{ active: scene === 'output' }">
+      <h2>Halo {{ nama }}!!!</h2>
+      <img src="windah2.jpg" alt="">
+      <button @click="pindah('maaf')">Lanjut</button>
+    </div>
+    
+    <div class="scene" :class="{ active: scene === 'maaf' }">
+      <h2>Maafin aku yaa kalo aku banyak salah🥲🥲🥲</h2>
+      <img src="windah4.jpg" alt="">
+      <button @click="pindah('sebagai')">Lanjut</button>
+    </div>
+
+    <div class="scene" :class="{ active: scene === 'sebagai' }">
+      <h2>Sebagai hadiah, aku bikinin website inii. <br>Semoga kamu suka yaaa..</h2>
+      <img src="windah2.jpg" alt="">
+      <button @click="pindah('maafin?')">Lanjut</button>
+    </div>
+
+    <div class="scene" :class="{ active: scene === 'maafin?' }">
+      <h2>Aku di maafin ga?</h2>
+      <img src="windah5.jpg" alt="">
+      <button @click="pindah('makasih')">Maafin</button>
+      <button @click="pindah('gamau')">Gamau😝</button>
+    </div>
+
+    <div class="scene" :class="{ active: scene === 'makasih' }">
+      <h2>YAAYYY, makasih {{ nama }}🩷🩷</h2>
+      <img src="windah7.jpg" alt="">
+      <button @click="pindah('exit')">Lanjut</button>
+    </div>
+
+    <div class="scene" :class="{ active: scene === 'exit' }">
+      <h2>Kalo mau balik ke awal click tombolnya yaa</h2>
+      <img src="windah2.jpg" alt="">
+      <button @click="pindah('input')">Kembali</button>
+    </div>
+
+    <!-- Scene : Warning -->
+    <div class="scene" :class="{ active: scene === 'warning' }">
+      <h2>⚠️ Isi dulu dong namanya</h2>
+      <img src="windah3.jpg" alt="">
+      <button @click="pindah('input')">I-iyaa bang</button>
+    </div>
+
+    <!-- Scene : gamau -->
+    <div class="scene" :class="{ active: scene === 'gamau' }">
+      <h2>Maafin donggg, pliss</h2>
+      <img src="windah6.jpg" alt="">
+      <button @click="pindah('makasih')">Maafin</button>
+      <button @click="pindah('gamau2')">Gamau😝</button>
+    </div>
+
+    <!-- Scene : gamau2 -->
+    <div class="scene" :class="{ active: scene === 'gamau2' }">
+      <h2>Kamu kok jahat gituu</h2>
+      <img src="windah6.jpg" alt="">
+      <button @click="pindah('makasih')">Maafin</button>
+      <button @click="pindah('gamau3')">Gamau😝</button>
+    </div>
+
+    <!-- Scene : gamau3 -->
+    <div class="scene" :class="{ active: scene === 'gamau3' }">
+      <h2>Maafin aku yaa...</h2>
+      <img src="windah4.jpg" alt="">
+      <button @click="pindah('makasih')">Maafin</button>
+      <button @click="pindah('makasih')">Yaudah aku maafin</button>
+    </div>
+  </div>
+
+  <script>
+    const { createApp } = Vue
+    createApp({
+      data() {
+        return {
+          nama: '',
+          scene: 'input'
+        }
+      },
+      methods: {
+        pindah(next) {
+          if (next === 'output' && this.nama.trim() === '') {
+            // kalau kosong → pindah ke scene warning
+            this.scene = 'warning'
+          } else {
+            // kalau terisi → lanjut normal
+            this.scene = next
+          }
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
